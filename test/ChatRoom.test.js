@@ -29,4 +29,13 @@ describe('chatroom tests', () => {
     expect(client).toEqual(result);
     expect(client.username).toEqual('Erin');
   });
+
+  it('gets all clients in the chatroom', () => {
+    const client1 = {};
+    const client2 = {};
+    const client3 = {};
+    chatroom.add(client1, client2, client3);
+    const results = chatroom.all();
+    expect(results).toContainEqual(client1, client2, client3);
+  });
 });
