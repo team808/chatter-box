@@ -21,7 +21,6 @@ const client = net.createConnection(9999, host, () => {
 });
 
 client.on('data', data => {
-  console.log(data.toString());
   playMessage(data.toString().split(': ')[1]);
   rl.prompt();
 });
