@@ -12,4 +12,12 @@ describe('chatroom tests', () => {
     expect(result.username).toEqual(expect.any(String));
     expect(client.username).toEqual(result.username);
   });
+
+  it('get a client by its username', () => {
+    const client = {};
+    chatroom.add(client);
+
+    const result = chatroom.getClient(client.username);
+    expect(client).toEqual(result);
+  });
 });
