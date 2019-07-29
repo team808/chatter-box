@@ -1,5 +1,6 @@
 const net = require('net');
 const readline = require('readline');
+const { playMessage } = require('./lib/utils/sound');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -19,5 +20,6 @@ const client = net.createConnection(9999, () => {
 
 client.on('data', data => {
   console.log(data.toString());
+  playMessage(data.toString().split(': ')[1]);
   rl.prompt();
 });
