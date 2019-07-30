@@ -2,7 +2,7 @@ const net = require('net');
 const readline = require('readline');
 const { playMessage } = require('./lib/utils/sound');
 
-const host = process.argv[2] || 'localhost';
+const host = process.argv[2] || '192.168.1.218';
 
 const rl = readline.createInterface({
   input: process.stdin,
