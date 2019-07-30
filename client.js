@@ -2,7 +2,7 @@ const net = require('net');
 const readline = require('readline');
 const { playMessage } = require('./lib/utils/sound');
 
-const host = process.argv[2] || 'localhost';
+// const host = process.argv[2] || 'localhost';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -10,7 +10,7 @@ const rl = readline.createInterface({
   prompt: '> '
 });
 
-const client = net.createConnection(9999, host, () => {
+const client = net.createConnection(9999, '192.168.1.92', () => {
   console.log('I am connected');
   
   rl.prompt();
@@ -21,6 +21,7 @@ const client = net.createConnection(9999, host, () => {
 });
 
 client.on('data', data => {
+  console.log(data.toString());
   playMessage(data.toString().split(': ')[1]);
   rl.prompt();
 });
