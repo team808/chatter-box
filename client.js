@@ -20,8 +20,13 @@ const client = net.createConnection(9999, host, () => {
   });
 });
 
+const date = new Date().toISOString().split('T')[0];
+// const time = new Date().toISOString().split('T')[1];
+
+
 client.on('data', data => {
   console.log(data.toString());
+  console.log(`posted on: ${date}`);
   playMessage(data.toString().split(': ')[1]);
   rl.prompt();
 });
