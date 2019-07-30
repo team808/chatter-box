@@ -1,6 +1,7 @@
 const net = require('net');
 const readline = require('readline');
 const { playMessage } = require('./lib/utils/sound');
+const moment = require('moment');
 
 const host = process.argv[2] || 'localhost';
 
@@ -20,8 +21,7 @@ const client = net.createConnection(9999, host, () => {
   });
 });
 
-const date = new Date().toISOString().split('T')[0];
-// const time = new Date().toISOString().split('T')[1];
+const date = moment().format('MMMM Do YYYY, h:mm:ss a');
 
 
 client.on('data', data => {
