@@ -12,7 +12,7 @@ const rl = readline.createInterface({
 });
 
 const client = net.createConnection(9999, host, () => {
-  console.log('I am connected');
+  console.log('You are connected');
   
   rl.prompt();
   rl.on('line', line => {
