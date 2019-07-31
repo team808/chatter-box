@@ -25,15 +25,25 @@ const date = moment().format('MMMM Do YYYY, h:mm:ss a');
 
 let yesterday = false;
 let yesterdaysMessages = [];
+
 client.on('data', data => {
   const dataToStr = data.toString();
-  if(dataToStr === '%%%') {
+  if(dataToStr.startsWith('%%%')) {
+    yesterdaysMessages = []; // is this ok?
     yesterday = true;
-    // we are dealing with yesterday
-  } else if(dataToStr === '$$$') {
+    const messages = dataToStr.split('\n').slice(1);
+    messages.forEach(message => {
+      console.log(message);
+      // yesterdaysMessages.push(message.split(': ')[1]);
+    });
+  } else if(dataToStr.endsWith('$$$')) {
     yesterday = false;
+    const messages = dataToStr.split('\n').slice(0, -1);
+    messages.forEach(message => {
+      console.log(message);
+      yesterdaysMessages.push(message.split(': ')[1]);
+    });
     playMessage(yesterdaysMessages.join(' '));
-    // we are done dealing wirth yesterday
   } else if(yesterday){
     console.log(dataToStr);
     yesterdaysMessages.push(dataToStr.split(': ')[1]);
@@ -41,6 +51,6 @@ client.on('data', data => {
     console.log(`posted on: ${date}`);
     console.log(dataToStr);
     playMessage(dataToStr.split(': ')[1]);
-    rl.prompt();
+    rl.prompt(true);
   }
 });
