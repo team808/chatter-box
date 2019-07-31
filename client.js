@@ -3,7 +3,7 @@ const readline = require('readline');
 const { playMessage } = require('./lib/utils/sound');
 const moment = require('moment');
 
-const host = process.argv[2] || 'localhost';
+const host = process.argv[2] || '192.168.1.115';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -23,10 +23,24 @@ const client = net.createConnection(9999, host, () => {
 
 const date = moment().format('MMMM Do YYYY, h:mm:ss a');
 
-
+let yesterday = false;
+let yesterdaysMessages = [];
 client.on('data', data => {
-  console.log(data.toString());
-  console.log(`posted on: ${date}`);
-  playMessage(data.toString().split(': ')[1]);
-  rl.prompt();
+  const dataToStr = data.toString();
+  if(dataToStr === '%%%') {
+    yesterday = true;
+    // we are dealing with yesterday
+  } else if(dataToStr === '$$$') {
+    yesterday = false;
+    playMessage(yesterdaysMessages.join(' '));
+    // we are done dealing wirth yesterday
+  } else if(yesterday){
+    console.log(dataToStr);
+    yesterdaysMessages.push(dataToStr.split(': ')[1]);
+  } else {
+    console.log(`posted on: ${date}`);
+    console.log(dataToStr);
+    playMessage(dataToStr.split(': ')[1]);
+    rl.prompt();
+  }
 });
