@@ -23,8 +23,6 @@ const client = net.createConnection(9999, host, () => {
 
 const date = moment().format('MMMM Do YYYY, h:mm:ss a');
 
-
-
 client.on('data', data => {
   const dataToStr = data.toString();
   const dataObject = JSON.parse(dataToStr);
@@ -35,7 +33,11 @@ client.on('data', data => {
     playMessage(dataObject.map(message => message.text).join(' '));
   } else {
     console.log(`posted on: ${date}`);
-    console.log(`${dataObject.nickname}: ${dataObject.text}`);
+    if(dataObject.command === 'dm') {
+      console.log(`dm from ${dataObject.nickname}: ${dataObject.text}`);
+    } else {
+      console.log(`${dataObject.nickname}: ${dataObject.text}`);
+    }
     playMessage(dataObject.text);
     rl.prompt(true);
   }
