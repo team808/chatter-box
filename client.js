@@ -31,18 +31,18 @@ client.on('data', data => {
 
   if(dataObject instanceof Array) {
     dataObject.forEach(message => {
-      console.log(`posted on: ${date}`);
-      console.log(`${message.nickname}: ${message.text}`);
+      console.log(gradient.instagram(`posted on: ${date}`));
+      console.log(gradient.instagram(`${message.nickname}: ${message.text}`));
     });
     playMessage(dataObject.map(message => message.text).join(' '));
 
   } else if(dataObject.command === 'dm') {
-    console.log(`posted on: ${date}`);
-    console.log(`dm from ${dataObject.nickname}: ${dataObject.text}`);
+    console.log(gradient.instagram(`posted on: ${date}`));
+    console.log(gradient.instagram(`dm from ${dataObject.nickname}: ${dataObject.text}`));
     playMessage(dataObject.text);
     
   } else {
-    console.log(`${dataObject.nickname}: ${dataObject.text}`);
+    console.log(gradient.instagram(`${dataObject.nickname}: ${dataObject.text}`));
     playMessage(dataObject.text);
   }
   rl.prompt(true);
