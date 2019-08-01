@@ -23,8 +23,10 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "gradient-string": "^1.2.0",
     "moment": "^2.24.0",
     "mongoose": "^5.6.7",
     "play-sound": "^1.1.3",
