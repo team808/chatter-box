@@ -2,6 +2,7 @@ const net = require('net');
 const readline = require('readline');
 const { playMessage } = require('./lib/utils/sound');
 const moment = require('moment');
+const gradient = require('gradient-string');
 
 const host = process.argv[2] || '192.168.1.115';
 
@@ -12,7 +13,7 @@ const rl = readline.createInterface({
 });
 
 const client = net.createConnection(9999, host, () => {
-  console.log('You are connected');
+  console.log(gradient.instagram('You are connected'));
   
   rl.prompt();
   rl.on('line', line => {
@@ -30,6 +31,7 @@ client.on('data', data => {
 
   if(dataObject instanceof Array) {
     dataObject.forEach(message => {
+      console.log(`posted on: ${date}`);
       console.log(`${message.nickname}: ${message.text}`);
     });
     playMessage(dataObject.map(message => message.text).join(' '));
@@ -37,11 +39,12 @@ client.on('data', data => {
   } else if(dataObject.command === 'dm') {
     console.log(`posted on: ${date}`);
     console.log(`dm from ${dataObject.nickname}: ${dataObject.text}`);
+    playMessage(dataObject.text);
     
   } else {
     console.log(`${dataObject.nickname}: ${dataObject.text}`);
+    playMessage(dataObject.text);
   }
-  playMessage(dataObject.text);
   rl.prompt(true);
   
 });
