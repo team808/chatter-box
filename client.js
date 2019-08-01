@@ -24,21 +24,24 @@ const client = net.createConnection(9999, host, () => {
 const date = moment().format('MMMM Do YYYY, h:mm:ss a');
 
 client.on('data', data => {
+
   const dataToStr = data.toString();
   const dataObject = JSON.parse(dataToStr);
+
   if(dataObject instanceof Array) {
     dataObject.forEach(message => {
       console.log(`${message.nickname}: ${message.text}`);
     });
     playMessage(dataObject.map(message => message.text).join(' '));
-  } else {
+
+  } else if(dataObject.command === 'dm') {
     console.log(`posted on: ${date}`);
-    if(dataObject.command === 'dm') {
-      console.log(`dm from ${dataObject.nickname}: ${dataObject.text}`);
-    } else {
-      console.log(`${dataObject.nickname}: ${dataObject.text}`);
-    }
-    playMessage(dataObject.text);
-    rl.prompt(true);
+    console.log(`dm from ${dataObject.nickname}: ${dataObject.text}`);
+    
+  } else {
+    console.log(`${dataObject.nickname}: ${dataObject.text}`);
   }
+  playMessage(dataObject.text);
+  rl.prompt(true);
+  
 });
