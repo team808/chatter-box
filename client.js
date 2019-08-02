@@ -31,13 +31,13 @@ client.on('data', data => {
 
   if(dataObject instanceof Array) {
     dataObject.forEach(message => {
-      console.log(gradient.instagram(`posted on: ${date}`));
+      console.log(gradient.cristal(`posted on: ${date}`));
       console.log(gradient.instagram(`${message.nickname}: ${message.text}`));
     });
     playMessage(dataObject.map(message => message.text).join(' '));
 
   } else if(dataObject.command === 'dm') {
-    console.log(gradient.instagram(`posted on: ${date}`));
+    console.log(gradient.cristal(`posted on: ${date}`));
     console.log(gradient.instagram(`dm from ${dataObject.nickname}: ${dataObject.text}`));
     playMessage(dataObject.text);
     
