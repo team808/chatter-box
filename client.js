@@ -4,7 +4,7 @@ const { playMessage } = require('./lib/utils/sound');
 const moment = require('moment');
 const gradient = require('gradient-string');
 
-const host = process.argv[2] || '192.168.1.218';
+const host = process.argv[2] || '192.168.1.115';
 
 const rl = readline.createInterface({
   input: process.stdin,
