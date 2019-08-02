@@ -24,10 +24,22 @@ const client = net.createConnection(9999, host, () => {
 
 const date = moment().format('MMMM Do YYYY, h:mm:ss a');
 
+let partial = '';
 client.on('data', data => {
 
   const dataToStr = data.toString();
-  const dataObject = JSON.parse(dataToStr);
+  let dataObject = null;
+  try {
+    dataObject = JSON.parse(partial + dataToStr);
+    partial = '';
+  } catch(e) {
+    partial += dataToStr;
+    //our way of saying exit, return here and wait for the next message
+    return;
+  }
+
+  //get a letter from the server that hass an array take this and parse it inseated of a letter you gt an actuall array; problem recieving a letter with no ending bracket meaning not an entier letter;; lets' add whatever we get to a string which is a partial letter so then grab whatever is in this string then add the partial then that should be able to be parsed; smashing the letters until it's all completed message
+
 
   if(dataObject instanceof Array) {
     dataObject.forEach(message => {
