@@ -4,7 +4,7 @@ const { playMessage } = require('./lib/utils/sound');
 const moment = require('moment');
 const gradient = require('gradient-string');
 
-const host = process.argv[2] || '192.168.1.115';
+const host = process.argv[2] || '192.168.1.218';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -42,9 +42,8 @@ client.on('data', data => {
     playMessage(dataObject.text);
     
   } else {
-    console.log(gradient.instagram(`${dataObject.nickname}: ${dataObject.text}`));
+    console.log(gradient.instagram(`\n${dataObject.nickname}: ${dataObject.text}`));
     playMessage(dataObject.text);
-  }
+  }  
   rl.prompt(true);
-  
 });
