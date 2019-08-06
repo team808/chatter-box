@@ -4,7 +4,7 @@ const gradient = require('gradient-string');
 
 const app = require('./lib/app');
 
-const PORT = process.env.PORT || 9999;
+const PORT = process.env.PORT || 9909;
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
