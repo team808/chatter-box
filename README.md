@@ -30,7 +30,7 @@ Tech stack:
             * important: space after colon.
  * direct message: ``` @dm:________ ________ ```
       * example: ``` @dm:wolfman Hello, old friend ```
-            * important: no space after colon, space after target name.
+            * important: NO space after colon, space after target name and before message text.
  * play all DMs from a certain user to you: ``` @play:________ ```
       * example: ``` @play:godzilla ```
             * important: space after colon.
