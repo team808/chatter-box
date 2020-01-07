@@ -19,7 +19,7 @@ Tech stack:
  * in your terminal, navigate to the cloned repo
  * ``` npm i ``` to get all dependencies
  * ``` npm start ``` to start the server
- * ``` node client.js ```
+ * ``` node client.js ``` to start chatting
  
  Commands:
  * change user name: ``` @nickname:________ ```
