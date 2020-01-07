@@ -18,7 +18,7 @@ Tech stack:
  * clone repo
  * in your terminal, navigate to the cloned repo
  * ``` npm i ``` to get all dependencies
- * ``` npm start ``` to start the server
+ * ``` npm start ``` to start the server if you are hosting the server
  * ``` node client.js ``` to start chatting
  
  Commands:
